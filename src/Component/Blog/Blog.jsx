@@ -1,7 +1,9 @@
-const Blog = ({blog}) => {
+import PropTypes from "prop-types";
+import {MdOutlineBookmarkBorder} from "react-icons/md";
+const Blog = ({blog, hndleToAddBookmarks}) => {
     const {title, cover, author_img, author, posted_date, hashtags, reading_time} = blog;
     return (
-        <div>
+        <div className=" mb-20">
             <img className="w-full mb-5 rounded-lg" src={cover} alt={`this is cover${title}`} />
 
             <div className="flex justify-between">
@@ -14,7 +16,10 @@ const Blog = ({blog}) => {
                 </div>
 
                 <div className="mr-25 pr-10">
-                    <span className="font-bold">{reading_time}min red</span>
+                    <span className="font-bold">{reading_time}min read</span>
+                    <button className="text-2xl" onClick={() => hndleToAddBookmarks(blog)}>
+                        <MdOutlineBookmarkBorder />
+                    </button>
                 </div>
             </div>
             <h2 className="text-3xl">{title}</h2>
@@ -27,6 +32,10 @@ const Blog = ({blog}) => {
             </p>
         </div>
     );
+};
+Blog.propTypes = {
+    blog: PropTypes.object.isRequired,
+    hndleToAddBookmarks: PropTypes.func.isRequired,
 };
 
 export default Blog;
